@@ -1,4 +1,5 @@
 const express = require('express')
+require('./config/passport')
 const dotenv = require('dotenv')
 
 const initDB = require('./database')

@@ -31,4 +31,11 @@ const getProfile = async (req, res) => {
     success(res, req.user, 'Successfully fetched')
 }
 
-module.exports = { register, login, getProfile }
+const googleOAuthCallback = async (req, res) => {
+    if(!req.user) return invalid(res, 'OAuth login failed')
+
+    const token = generateToken(req.user._id)
+    success(res, req.user, 'Successfully logged in with Google', token)
+}
+
+module.exports = { register, login, getProfile, googleOAuthCallback }
